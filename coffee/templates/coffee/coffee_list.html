@@ -63,23 +63,24 @@
 <!--          </label>-->
 <!--        </div>-->
 
-      <form action="{% coffee_detail.html %}" method="post" enctype="multipart/form-data">
+      <form action="{% url 'coffee_detail' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
         <div class="form-check form-check-inline">
-          <input type="radio" name="check_list" value="1">
+          <input type="radio" name="check_list" value="price">
             <label class="form-check-label">가격</label>
-          <input type="radio" name="check_list" value="2">
+          <input type="radio" name="check_list" value="caffeine">
             <label class="form-check-label">카페인</label>
-          <input type="radio" name="check_list" value="3">
+          <input type="radio" name="check_list" value="kcal">
             <label class="form-check-label">칼로리</label>
-          <input type="radio" name="check_list" value="4">
+          <input type="radio" name="check_list" value="sugar">
             <label class="form-check-label">당</label>
         </div>
         <div class="col-3">
             <div class="input-group mb-3">
-                <select class="form-select" aria-label="Default select example" method="post" id="search_mode">
+                <select class="form-select" aria-label="Default select example" method="post" id="search_mode" name="search_mode">
                   <option selected>순위 보기</option>
-                  <option value="5">높은 순</option>
-                  <option value="6">낮은 순</option>
+                  <option value="desc">높은 순</option>
+                  <option value="asc">낮은 순</option>
                 </select>
                 <button type="submit">검색</button>
             </div>
@@ -103,9 +104,15 @@
 <!-- brand -->
 
 {% for c in coffee_list %}
-{{ c.brand }}
-<!-- price -->
-{{ c.price }}
+    {% if c.brand == "mega" %}
+    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMTlfMTM4%2FMDAxNjQyNTc1MDQzNTI0.OJpHMdpFYLas79g9dEqD8XACi1CInL4-WxQaAyI2XnIg.kQ2H4zHS-w8xvAim_utmBmGNT91lEz3RXr8L0k_6Cb8g.PNG.po00206%2F20220119_154946.png&type=sc960_832"
+        class="rounded" style="width:100px; height:100px;">
+    {{ c.brand }}
+    <!-- price -->
+    {{ c.coffee }}
+    {{ c.coffee_name }}
+    {% endif %}
+<hr>
 {% endfor %}
 
 

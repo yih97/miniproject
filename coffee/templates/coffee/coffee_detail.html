@@ -5,6 +5,12 @@
     <title>coffee detail</title>
 </head>
 <body>
-{{ coffee_list }}
+{% for cof in coffee_list %}
+    <p>{{ cof.coffee_name }}</p>
+    <p>{{ cof.caffeine }}</p>
+    <p>{{ cof.kcal }}</p>
+    <p>{{ cof.price }}</p>
+    <p>{{ cof.sugar }}</p>
+{% endfor %}
 </body>
 </html>
