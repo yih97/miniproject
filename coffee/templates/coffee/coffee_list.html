@@ -105,12 +105,11 @@
 
 {% for c in coffee_list %}
     {% if c.brand == "mega" %}
-    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMTlfMTM4%2FMDAxNjQyNTc1MDQzNTI0.OJpHMdpFYLas79g9dEqD8XACi1CInL4-WxQaAyI2XnIg.kQ2H4zHS-w8xvAim_utmBmGNT91lEz3RXr8L0k_6Cb8g.PNG.po00206%2F20220119_154946.png&type=sc960_832"
-        class="rounded" style="width:100px; height:100px;">
-    {{ c.brand }}
-    <!-- price -->
-    {{ c.coffee }}
-    {{ c.coffee_name }}
+    <ul>
+        <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMTlfMTM4%2FMDAxNjQyNTc1MDQzNTI0.OJpHMdpFYLas79g9dEqD8XACi1CInL4-WxQaAyI2XnIg.kQ2H4zHS-w8xvAim_utmBmGNT91lEz3RXr8L0k_6Cb8g.PNG.po00206%2F20220119_154946.png&type=sc960_832"
+            class="rounded" style="width:100px; height:100px;">
+        <p class="float-center">{{ c.brand }}    {{ c.coffee_name }}    {{ c.price }}</p>
+    </ul>
     {% endif %}
 <hr>
 {% endfor %}
