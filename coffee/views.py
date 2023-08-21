@@ -24,13 +24,14 @@ class CoffeeList(ListView):
 
 def check_list(request):
     if request.POST:
-        coffee_list = request.POST.getlist('check_list')
-
-    search_mode = request.POST.getlist('search_mode')
-    if search_mode:
-        if search_mode == '높은 순':
-           aaa = coffee_list.objects.order_by('컬럼명')
-        else:
-           aaa = coffee_list.objects.order_by('컬렴명')
-    context = {'coffee_list': aaa}
+        # 정렬 기준
+        coffee_list = request.POST.get('check_list')
+        # 오름차순|내림차순 선택(asc, desc)
+        search_mode = request.POST.get('search_mode')
+        if search_mode:
+            if search_mode == 'desc':
+               aaa = Coffee.objects.order_by(f'-{coffee_list}')
+            else:
+               aaa = Coffee.objects.order_by(f'{coffee_list}')
+        context = {'coffee_list': aaa}
     return render(request, "coffee/coffee_detail.html", context)
