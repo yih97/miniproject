@@ -9,3 +9,5 @@ class Coffee(models.Model):
     caffeine = models.IntegerField      # 카페인
     sugar = models.IntegerField     # 당
     kcal = models.IntegerField       # 칼로리
+
+
