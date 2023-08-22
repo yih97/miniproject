@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>{{ coffee_list.coffee }}</title>
@@ -9,12 +10,12 @@
 <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">-->
 <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>-->
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">-->
 <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>-->
 
 </head>
 <body>
-
+   {% include 'single_page/base.html' %}
 
 <!--  check box -->
 <div class="container">
@@ -67,13 +68,13 @@
       {% csrf_token %}
         <div class="form-check form-check-inline">
           <input type="radio" name="check_list" value="price">
-            <label class="form-check-label">가격</label>
+            <label class="form-check-label text-white">가격</label>
           <input type="radio" name="check_list" value="caffeine">
-            <label class="form-check-label">카페인</label>
+            <label class="form-check-label text-white">카페인</label>
           <input type="radio" name="check_list" value="kcal">
-            <label class="form-check-label">칼로리</label>
+            <label class="form-check-label text-white">칼로리</label>
           <input type="radio" name="check_list" value="sugar">
-            <label class="form-check-label">당</label>
+            <label class="form-check-label text-white">당</label>
         </div>
         <div class="col-3">
             <div class="input-group mb-3">
@@ -108,7 +109,7 @@
     <ul>
         <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMTlfMTM4%2FMDAxNjQyNTc1MDQzNTI0.OJpHMdpFYLas79g9dEqD8XACi1CInL4-WxQaAyI2XnIg.kQ2H4zHS-w8xvAim_utmBmGNT91lEz3RXr8L0k_6Cb8g.PNG.po00206%2F20220119_154946.png&type=sc960_832"
             class="rounded" style="width:100px; height:100px;">
-        <p class="float-center">{{ c.brand }}    {{ c.coffee_name }}    {{ c.price }}</p>
+        <p class="float-center text-white">{{ c.brand }}    {{ c.coffee_name }}    {{ c.price }}</p>
     </ul>
     {% endif %}
 <hr>
@@ -120,7 +121,8 @@
 <!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>-->
 <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>-->
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>-->
+{% include 'single_page/footer.html' %}
 </body>
 </html>
