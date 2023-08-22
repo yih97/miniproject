@@ -66,28 +66,49 @@
 
       <form action="{% url 'coffee_detail' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
-        <div class="form-check form-check-inline">
-          <input type="radio" name="check_list" value="price">
-            <label class="form-check-label text-white">가격</label>
-          <input type="radio" name="check_list" value="caffeine">
-            <label class="form-check-label text-white">카페인</label>
-          <input type="radio" name="check_list" value="kcal">
-            <label class="form-check-label text-white">칼로리</label>
-          <input type="radio" name="check_list" value="sugar">
-            <label class="form-check-label text-white">당</label>
-        </div>
-        <div class="col-3">
-            <div class="input-group mb-3">
-                <select class="form-select" aria-label="Default select example" method="post" id="search_mode" name="search_mode">
-                  <option selected>순위 보기</option>
-                  <option value="desc">높은 순</option>
-                  <option value="asc">낮은 순</option>
-                </select>
-                <button type="submit">검색</button>
+
+      <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">COFFEE FINDER</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index.html">Home</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.html">About</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="products.html">Products</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="store.html">Store</a></li>
+                </ul>
             </div>
         </div>
-      </form>
-    </div>
+    </nav>
+
+
+<!--        <div class="form-check form-check-inline">-->
+<!--          <input type="radio" name="check_list" value="price">-->
+<!--            <label class="form-check-label text-white">가격</label>-->
+<!--          <input type="radio" name="check_list" value="caffeine">-->
+<!--            <label class="form-check-label text-white">카페인</label>-->
+<!--          <input type="radio" name="check_list" value="kcal">-->
+<!--            <label class="form-check-label text-white">칼로리</label>-->
+<!--          <input type="radio" name="check_list" value="sugar">-->
+<!--            <label class="form-check-label text-white">당</label>-->
+
+<!--        </div>-->
+<!--        <div class="col-3">-->
+<!--            <div class="input-group mb-3">-->
+<!--                <select class="form-select" aria-label="Default select example" method="post" id="search_mode" name="search_mode">-->
+<!--                  <option selected>순위 보기</option>-->
+<!--                  <option value="desc">높은 순</option>-->
+<!--                  <option value="asc">낮은 순</option>-->
+<!--                </select>-->
+<!--                  <button type="submit">검색</button>-->
+<!--                </nav>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+
 
 <!-- 순위 선택 -->
 <!--    <div class="col-2">-->
@@ -99,8 +120,8 @@
 <!--      </ul>-->
 <!--      </div>-->
 <!--    </div>-->
-  </div>
-</div>
+<!--  </div>-->
+<!--</div>-->
 
 <!-- brand -->
 
@@ -108,7 +129,7 @@
     {% if c.brand == "mega" %}
     <ul>
         <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMTlfMTM4%2FMDAxNjQyNTc1MDQzNTI0.OJpHMdpFYLas79g9dEqD8XACi1CInL4-WxQaAyI2XnIg.kQ2H4zHS-w8xvAim_utmBmGNT91lEz3RXr8L0k_6Cb8g.PNG.po00206%2F20220119_154946.png&type=sc960_832"
-            class="rounded" style="width:100px; height:100px;">
+            class="rounded" style="width:80px; height:80px;">
         <p class="float-center text-white">{{ c.brand }}    {{ c.coffee_name }}    {{ c.price }}</p>
     </ul>
     {% endif %}
