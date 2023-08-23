@@ -6,6 +6,10 @@ from django.core.paginator import Paginator
 def category_page(request):
     if "cate" in request.GET:
         category = Coffee.objects.filter(coffee=request.GET["cate"])
+
+    elif "br" in request.GET:
+        category = Coffee.objects.filter(brand=request.GET["br"])
+
     else:
         category = Coffee.objects.all()
 
