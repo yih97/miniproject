@@ -20,6 +20,11 @@ def category_page(request):
         data_filter = "cate"
 
 
+    elif "br" in request.GET:
+        category = Coffee.objects.filter(brand=request.GET["br"])
+
+
+
     else:
         category = Coffee.objects.all()
         data_src = "all"
