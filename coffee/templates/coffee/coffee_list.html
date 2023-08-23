@@ -6,7 +6,7 @@
     <title>{{ coffee_list.coffee }}</title>
 
   <h2>{{ coffee_list.coffee }}</h2>
-    <p>수정</p>
+
 
 <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">-->
 <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>-->
@@ -90,7 +90,12 @@
                 <label class="form-check-label text-white" style="margin-right: 20px;">당</label>
             </div>
 
-
+            <div>
+                <!--데이터 받아올 수 있게-->
+                <input class="visually-hidden" name="data_filter" value="{{ data_filter }}">
+                    <h1 style="color:white">{{ data_src }}</h1>
+                <input class="visually-hidden" name="data_src" value="{{ data_src }}">
+            </div>
 <!--             </div>-->
             </div>
       </form>
