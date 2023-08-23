@@ -1,5 +1,4 @@
 from django.db import models
-<<<<<<< Updated upstream
 from datetime import datetime
 
 class Community(models.Model):
@@ -9,7 +8,6 @@ class Community(models.Model):
 
     def __str__(self):
         return self.title
-=======
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
@@ -18,4 +16,3 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
->>>>>>> Stashed changes
