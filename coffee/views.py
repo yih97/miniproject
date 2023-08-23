@@ -4,17 +4,19 @@ from django.views.generic import ListView, DetailView
 
 # Create your views here.
 
-# def category_page(request, pk):
-#     category = CoffeeList.objects.get(pk=pk)
-#
-#     return render(
-#         request,
-#         "coffee/coffee_list.html",
-#         {
-#             "categories": CoffeeList.objects.all(),
-#             "category": category,
-#         }
-#     )
+def category_page(request):
+    if "cate" in request.GET:
+        category = Coffee.objects.filter(coffee=request.GET["cate"])
+    else:
+        category = Coffee.objects.all()
+
+    return render(
+        request,
+        "coffee/coffee_list.html",
+        {
+            "coffee_list": category,
+        }
+    )
 
 class CoffeeList(ListView):
     model = Coffee
