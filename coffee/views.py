@@ -14,6 +14,10 @@ def category_page(request):
         # 받아온 데이터를 data_src라는 변수로 받기
         data_filter = "cate"
 
+    elif "br" in request.GET:
+        category = Coffee.objects.filter(brand=request.GET["br"])
+
+
     else:
         category = Coffee.objects.all()
         data_src = "all"
