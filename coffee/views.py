@@ -6,6 +6,10 @@ from django.core.paginator import Paginator
 def category_page(request):
     if "cate" in request.GET:
         category = Coffee.objects.filter(coffee=request.GET["cate"])
+
+    elif "br" in request.GET:
+        category = Coffee.objects.filter(brand=request.GET["br"])
+
     else:
         category = Coffee.objects.all()
 
@@ -16,6 +20,8 @@ def category_page(request):
             "coffee_list": category,
         }
     )
+
+
 
 class CoffeeList(ListView):
     model = Coffee
@@ -36,6 +42,8 @@ def check_list(request):
                aaa = Coffee.objects.order_by(f'{coffee_list}')
         context = {'coffee_list': aaa}
     return render(request, "coffee/coffee_detail.html", context)
+
+
 
 # def coffee_list(request):
 #     items_per_page = 8  # 한 페이지당 커피 아이템 수

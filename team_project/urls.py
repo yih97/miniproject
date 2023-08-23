@@ -21,4 +21,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("single_page/", include("single_page.urls")),
     path("coffee/", include("coffee.urls")),
+    path('', include('community.urls')),
 ]
