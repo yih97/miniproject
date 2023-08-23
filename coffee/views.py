@@ -6,6 +6,11 @@ from django.core.paginator import Paginator
 def category_page(request):
     if "cate" in request.GET:   # url 에 ?cate=가 들어가는지 확인
         category = Coffee.objects.filter(coffee=request.GET["cate"])
+
+
+    elif "br" in request.GET:
+        category = Coffee.objects.filter(brand=request.GET["br"])
+
         #  filter: 행의 제한을 거는 것
         # 컬럼명이 coffee 값이 "cate"에 해당되는
         # "cate"는 변수명
@@ -14,8 +19,10 @@ def category_page(request):
         # 받아온 데이터를 data_src라는 변수로 받기
         data_filter = "cate"
 
+
     elif "br" in request.GET:
         category = Coffee.objects.filter(brand=request.GET["br"])
+
 
 
     else:
