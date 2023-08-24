@@ -3,38 +3,28 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
-    <!-- Bootstrap core JS-->
-    <script src="{% static 'css/styles.css' %}" rel="stylesheet" ></script>
-    <!-- Core theme JS-->
-    <script src="{% static 'js/scripts.js' %}"></script>
     <title>Create</title>
-    <div class="container">
-        <div class="row">
-            <div class="col12">
-                <div class="card">
-                     <div class="card-body">
-                         <h2> New</h2>
-                            <form method="post">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            <button type="submit" class="btn btn-outline-primary">완료</button>
-                            </form>
-                    </div>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body" style="background-color: #f8f9fa;">
+                    <h2 class="card-title" style="font-size: 24px; margin-bottom: 20px;">새로 작성하기</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">완료</button>
+                  </form>
                 </div>
             </div>
         </div>
     </div>
-    </section>
 </div>
-
-
-
-</head>
-<body>
-
-<!-- Bootstrap core JS-->
-<script src="{% static 'css/styles.css' %}" rel="stylesheet" ></script>
-<!-- Core theme JS-->
 <script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

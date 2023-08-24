@@ -82,7 +82,7 @@
                           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                               CATEGORY
                           </a>
-                          <ul class="dropdown-menu">
+                          <ul class="dropdown-menu dropdown-menu-dark">
                               {% for cate in category %}
                                 <li><a class="dropdown-item" href="/coffee/?cate={{ cate.coffee }}">{{ cate.coffee }}</a></li>
                               {% endfor %}
@@ -102,12 +102,27 @@
             </div>
         </nav>
 
+    <div class="card" style="width: 10%; float: right;">
+    <a href="new/" class="btn btn-primary">작성하기</a>
+    </div>
+
+
 
     <div class="container">
+
         <h2 style="color:white">게시글</h2>
+             <a href ="{% url 'community:new' %}">
+        <button class="btn btn-primary" style="float-end" type="submit">Create</button>
+    </a>
+
         {% for c in community %}
-        <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+        <div class="card" style="width: 18rem;" id="post-{{ c.pk }}">
+<!--        <img src="..." class="card-img-top" alt="...">-->
+            {% if c.imgfile %}
+                <a href="#!"><img class="card-img-top" src="{{ c.imgfile.url }}" alt = "{{ c.imgfile }} head image" /></a>
+            {% else %}
+                <a href="#!"><img class="card-img-top" src="https://picsum.photos/seed/{{ c.pk }}/800/500" alt ="random_image" /></a>
+            {% endif %}
         <div class="card-body">
             <p class="card-text">
             <h4>{{ c.title }}</h4>
@@ -120,11 +135,27 @@
         {% endfor %}
         <div class="container">
             <div class="card" style="width: 50rem;" >
+  <div class="container">
+    <h2 class="text-center" style="color: white;">게시물</h2>
+    <div class="row">
+        {% for c in community %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+
                 <div class="card-body">
-                <br/>
-                <a href="#" class="btn btn-primary"></a>
+                    <h4 class="card-title">{{ c.title }}</h4>
+                    <p class="card-text">{{ c.content }}</p>
+                    <a href="{% url 'community:community_detail' c.pk %}" class="btn btn-primary">보기</a>
                 </div>
             </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="card" style="width: 10%;" >
+            <a href="#" class="btn btn-primary">더 보기</a>
+    </div>
+</div>
+
 
         <!-- 드롭다운 메뉴 만든다 -->
             {% for i in categories %}
