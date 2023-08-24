@@ -13,27 +13,25 @@ def community(request):
     community = Community.objects.all()
     category = Coffee.objects.all().values("coffee").distinct()
     return render(request,"community/community.html", {"community" : community, "category":category})
-  
+
 def community_detail(request, pk):
     community = get_object_or_404(Community, pk=pk)
     return render(request, "community/community_detail.html", {"community" : community})
 
-
 def new(request):
-    if request.method == "POST":
-        form = CommunityForm(request.POST)
+    if request.method == "POST" or request.method == 'FILES':
+        form = CommunityForm(request.POST, request.FILES)
         if form.is_valid():
             community = form.save(commit=False)
             community.save()
             return redirect("/community/")
-
     else:
         form = CommunityForm()
         return render(request, "community/new.html", {"form": form})
 
+
 def update(request, pk):
     community = get_object_or_404(Community, pk=pk)
-
     if request.method == "POST":
         form = CommunityForm(request.POST, instance=community)
         if form.is_valid():
@@ -42,7 +40,6 @@ def update(request, pk):
             return redirect("/community/")
     else:
         form = CommunityForm(instance=community)
-
         return render(request, "community/new.html", {"form": form})
 
 
@@ -61,16 +58,12 @@ def signup(request):
     return render(request, 'community/signup.html', {'form' : form})
 
 
-
-
 @login_required(login_url='community:login')
 def modify(request, community_id):
     post = get_object_or_404(Community, pk=community_id)
     if request.user != post.author:
         messages.error(request, '수정권한이 없습니다.')
         return redirect('/')
-
-    
     if request.method == "POST":
          form = CommunityForm(request.POST, instance=community)
          if form.is_valid():
@@ -89,4 +82,15 @@ def delete(request, pk):  # 매개변수 설정
     community = get_object_or_404(Community, pk=pk)
     community.delete()
     return redirect("/community/")
+
+
+
+
+
+
+
+
+
+
+
 
