@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>커피 상세 정보</title>
 </head>
+
+
+
     <body>
         {% include 'single_page/base.html' %} <!-- 기본 베이스 HTML 포함 -->
         {% for cof in coffee_list %}
@@ -13,6 +16,7 @@
             <p style="color: white;">{{ cof.price }}</p> <!-- 가격 표시 -->
             <p style="color: white;">{{ cof.sugar }}</p> <!-- 당 함량 표시 -->
         {% endfor %}
+
 
         <!-- 페이지네이션 -->
         <nav aria-label="Page navigation example">
