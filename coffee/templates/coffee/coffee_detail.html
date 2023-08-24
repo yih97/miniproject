@@ -7,36 +7,29 @@
     <body>
     <button type="button" class="btn btn-outline-light"><a href="/">HOME</a></button>
         {% include 'single_page/base.html' %} <!-- 기본 베이스 HTML 포함 -->
-<!--        {% for cof in coffee_list %}-->
-<!--            <p style="color: white;">{{ cof.brand }}</p> &lt;!&ndash; 브랜드 표시 &ndash;&gt;-->
-<!--            <p style="color: white;">{{ cof.coffee_name }}</p> &lt;!&ndash; 커피 이름 표시 &ndash;&gt;-->
-<!--            <p style="color: white;">{{ cof.caffeine }}</p> &lt;!&ndash; 카페인 함량 표시 &ndash;&gt;-->
-<!--            <p style="color: white;">{{ cof.kcal }}</p> &lt;!&ndash; 칼로리 표시 &ndash;&gt;-->
-<!--            <p style="color: white;">{{ cof.price }}</p> &lt;!&ndash; 가격 표시 &ndash;&gt;-->
-<!--            <p style="color: white;">{{ cof.sugar }}</p> &lt;!&ndash; 당 함량 표시 &ndash;&gt;-->
-<!--        {% endfor %}-->
 
-        <table class="table table-hover table-dark"  border="1">
-        <thead>
-            <th style="color:white;">BRAND</th>
-            <th style="color:white;">NAME</th>
-            <th style="color:white;">PRICE</th>
-            <th style="color:white;">CAFFEINE</th>
-            <th style="color:white;">KCAL</th>
-            <th style="color:white;">SUGAR</th>
-        </thead>
-        {% for c in coffee_list %}
-            <tr class="alert" role="alert">
-                <td style="color:white;">{{ c.brand }}</td>
-                <td style="color:white;">{{ c.coffee_name }}</td>
-                <td style="color:white;">{{ c.price }}</td>
-                <td style="color:white;">{{ c.caffeine }}</td>
-                <td style="color:white;">{{ c.kcal }}</td>
-                <td style="color:white;">{{ c.sugar }}</td>
-<!--                {{ c.brand }} - {{ c.coffee_name }} - {{ c.price }}-->
-            </tr>
-        {% endfor %}
+
+        <table class="table table-hover table-transparent" border="1">
+            <thead>
+                <th style="color:white;">브랜드</th>
+                <th style="color:white;">이름</th>
+                <th style="color:white;">가격</th>
+                <th style="color:white;">카페인</th>
+                <th style="color:white;">칼로리</th>
+                <th style="color:white;">당류</th>
+            </thead>
+            {% for c in coffee_list %}
+                <tr class="alert" role="alert">
+                    <td style="color:white;">{{ c.brand }}</td>
+                    <td style="color:white;">{{ c.coffee_name }}</td>
+                    <td style="color:white;">{{ c.price }}</td>
+                    <td style="color:white;">{{ c.caffeine }}</td>
+                    <td style="color:white;">{{ c.kcal }}</td>
+                    <td style="color:white;">{{ c.sugar }}</td>
+                </tr>
+            {% endfor %}
         </table>
+
 
 
         <!-- 페이지네이션 -->
