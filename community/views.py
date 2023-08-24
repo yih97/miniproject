@@ -5,33 +5,40 @@ from django.contrib.auth import authenticate, login      # 로그인 기능을 �
 from community.forms import UserForm, CommunityForm
 from django.contrib import messages    # 로그인한 사용자와 수정하려는 글쓴이가 다르면 '수정권한이 없습니다'라는 오류가 발생하도록 하기 위해 import
 from django.utils import timezone      # timezone.now()를 사용하기 위해 import
-# Create your views here.
-
-def community(request):
-    return render(request, "community/community.html")
-
-
 from django.shortcuts import render
 from .models import Community
 from .forms import CommunityForm
+def community(request):
+    community = Community.objects.all()
+    return render(request,"community/community.html", {"community" : community})
+def community_detail(request, pk):
+    community = get_object_or_404(Community, pk=pk)
+    return render(request, "community/community_detail.html", {"community" : community})
 
-def community_page(request):
-    posts = Community.objects.all()   # 커뮤니티 객체들의 집합을 post라고 칭하고자 함
-    return render(
-        request,
-        "community/community.html",
-        {"posts": posts}
-    )
+def new(request):
+    if request.method == "POST":
+        form = CommunityForm(request.POST)
+        if form.is_valid():
+            community = form.save(commit=False)
+            community.save()
+            return redirect("/community/")
 
+    else:
+        form = CommunityForm()
+        return render(request, "community/new.html", {"form": form})
 
-def detail(request, community_id):    # 커뮤니티 글의 상세페이지를 보여주는 함수
-    community = get_object_or_404(Community, pk=community_id)
-    context = {'community': community}
-    return render(request, 'community/community_detail.html', context)
+def update(request, pk):
+    community = get_object_or_404(Community, pk=pk)
 
-def community_create(request):
-    form = CommunityForm()
-    return render(request, 'community/community_form.html', { 'form' : form })
+    if request.method == "POST":
+        form = CommunityForm(request.POST, instance=community)
+        if form.is_valid():
+            community = form.save(commit=False)
+            community.save()
+            return redirect("/community/")
+    else:
+        form = CommunityForm(instance=community)
+        return render(request, "community/new.html", {"form": form})
 
 
 def signup(request):
