@@ -18,6 +18,7 @@ class Community(models.Model):
 
 
 
+
 class Coffee(models.Model):
     id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     brand = models.CharField(max_length=10)     # 브랜드
@@ -30,6 +31,7 @@ class Coffee(models.Model):
 
 
         
+
 
 
 
