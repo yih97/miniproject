@@ -56,33 +56,43 @@ class CoffeeList(ListView):
 
 def check_list(request):
     if request.method == "POST":
-        if request.POST.get("data_filter") == "cate":
-            data = Coffee.objects.filter(coffee=request.POST.get("data_src"))
+        data_filter = request.POST.get("data_filter")
+        data_src = request.POST.get("data_src")
+        check_list = request.POST.get("check_list")
+        search_mode = request.POST.get("search_mode")
+        page_number = 1
 
-        elif request.POST.get("data_filter") == "br":
-            data = Coffee.objects.filter(brand=request.POST.get("data_src"))
-        # 브랜드 정보를 전달하는 경우 여기에서 조건 설정:
-        # 브랜드 필터링 데이터 받아오기
+    else:
+        data_filter = request.GET.get("data_filter")
+        data_src = request.GET.get("data_src")
+        check_list = request.GET.get("check_list")
+        search_mode = request.GET.get("search_mode")
+        page_number = request.GET.get("page")
 
-        else:
-            data = Coffee.objects.all()
+    data = Coffee.objects.all()  # 기본적으로 모든 커피 데이터를 가져옴
 
-        # 정렬 기준
-        check_list = request.POST.get('check_list')
-        # 오름차순 | 내림차순 (asc, desc)
-        search_mode = request.POST.get('search_mode')
-        if search_mode:
-            if search_mode == 'desc':
-                aaa = data.order_by(f'-{check_list}')
-            else:
-                aaa = data.order_by(f'{check_list}')
+    if data_filter == "cate":
+        data = Coffee.objects.filter(coffee=data_src)
+    elif data_filter == "br":
+        data = Coffee.objects.filter(brand=data_src)
 
-        # 페이지네이션을 위한 설정
-        page_number = request.GET.get('page')
-        page_size = 10  # 페이지당 아이템 개수 설정
+    if search_mode:
+        sort_order = f"-{check_list}" \
+            if search_mode == "desc" \
+            else check_list
+        data = data.order_by(sort_order)
 
-        paginator = Paginator(aaa, page_size)
-        page_obj = paginator.get_page(page_number)
+    page_size = 10
 
-        context = {'coffee_list': page_obj}
-        return render(request, "coffee/coffee_detail.html", context)
+    paginator = Paginator(data, page_size)
+    page_obj = paginator.get_page(page_number)
+
+    context = {"coffee_list": page_obj,
+               "data_filter": data_filter,
+               "data_src": data_src,
+               "check_list":check_list,
+               "Search_mode":search_mode}
+
+    return render(
+        request,
+        "coffee/coffee_detail.html",context)
