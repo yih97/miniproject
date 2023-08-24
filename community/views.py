@@ -11,19 +11,12 @@ from coffee.models import Coffee
 
 def community(request):
     community = Community.objects.all()
-    return render(request,"community/community.html", {"community" : community})
+    category = Coffee.objects.all().values("coffee").distinct()
+    return render(request,"community/community.html", {"community" : community, "category":category})
   
 def community_detail(request, pk):
     community = get_object_or_404(Community, pk=pk)
     return render(request, "community/community_detail.html", {"community" : community})
-
-def community(request):
-    community = Community.objects.all()
-    return render(request,"community/community.html", {"community" : community})
-
-def community_detail(request, pk):   # 커뮤니티 글의 상세페이지를 보여주는 함수
-    community = get_object_or_404(Community, pk=pk)
-    return render(request, "community/community_detail.html", {"community": community})
 
 
 def new(request):
