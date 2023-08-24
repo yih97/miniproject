@@ -7,6 +7,7 @@ from django.contrib import messages    # 로그인한 사용자와 수정하려�
 from django.utils import timezone      # timezone.now()를 사용하기 위해 import
 from .models import Community
 from .forms import CommunityForm
+from coffee.models import Coffee
 
 def community(request):
     community = Community.objects.all()
@@ -95,3 +96,4 @@ def delete(request, pk):  # 매개변수 설정
     community = get_object_or_404(Community, pk=pk)
     community.delete()
     return redirect("/community/")
+
