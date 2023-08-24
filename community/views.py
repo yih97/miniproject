@@ -8,6 +8,15 @@ from django.utils import timezone      # timezone.now()를 사용하기 위해 i
 from .models import Community
 from .forms import CommunityForm
 
+def community(request):
+    community = Community.objects.all()
+    return render(request,"community/community.html", {"community" : community})
+  
+def community_detail(request, pk):
+    community = get_object_or_404(Community, pk=pk)
+    return render(request, "community/community_detail.html", {"community" : community})
+
+
 
 # Create your views here.
 
@@ -19,15 +28,31 @@ def community_detail(request, pk):   # 커뮤니티 글의 상세페이지를 �
     community = get_object_or_404(Community, pk=pk)
     return render(request, "community/community_detail.html", {"community": community})
 
+
 def new(request):
     if request.method == "POST":
         form = CommunityForm(request.POST)
-        if form.is_vailid():
+        if form.is_valid():
             community = form.save(commit=False)
             community.save()
-            return redirect("community", pk=pk)
+            return redirect("/community/")
+
     else:
         form = CommunityForm()
+        return render(request, "community/new.html", {"form": form})
+
+def update(request, pk):
+    community = get_object_or_404(Community, pk=pk)
+
+    if request.method == "POST":
+        form = CommunityForm(request.POST, instance=community)
+        if form.is_valid():
+            community = form.save(commit=False)
+            community.save()
+            return redirect("/community/")
+    else:
+        form = CommunityForm(instance=community)
+
         return render(request, "community/new.html", {"form": form})
 
 

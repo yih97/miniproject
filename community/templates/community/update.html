@@ -7,14 +7,31 @@
     <script src="{% static 'css/styles.css' %}" rel="stylesheet" ></script>
     <!-- Core theme JS-->
     <script src="{% static 'js/scripts.js' %}"></script>
-    <title>Update</title>
-
-
+    <title>Create</title>
+    <div class="container">
+        <div class="row">
+            <div class="col12">
+                <div class="card">
+                     <div class="card-body">
+                         <h2> New</h2>
+                            <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-outline-primary">완료</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+</div>
 
 
 
 </head>
 <body>
+
 <!-- Bootstrap core JS-->
 <script src="{% static 'css/styles.css' %}" rel="stylesheet" ></script>
 <!-- Core theme JS-->
