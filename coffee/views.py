@@ -4,10 +4,6 @@ from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator
 
 def category_page(request):
-    # 데이터 필터링 기준 변수 초기화
-    data_src = ""
-    data_filter = ""
-
     # "cate" 파라미터가 있는지 확인
     if "cate" in request.GET:
         # 카테고리에 따른 커피 필터링
@@ -22,6 +18,8 @@ def category_page(request):
         category = Coffee.objects.filter(brand=request.GET["br"])
         data_src = request.GET["br"]
         data_filter = "br"
+
+
 
     else:
         # 모든 커피 데이터 가져오기
@@ -50,7 +48,6 @@ def category_page(request):
 
 class CoffeeList(ListView):
     model = Coffee
-    
 
 # class CoffeeDetail(DetailView):
 #     model = Coffee
@@ -74,6 +71,7 @@ def check_list(request):
 
     if data_filter == "cate":
         data = Coffee.objects.filter(coffee=data_src)
+
     elif data_filter == "br":
         data = Coffee.objects.filter(brand=data_src)
 
@@ -91,8 +89,8 @@ def check_list(request):
     context = {"coffee_list": page_obj,
                "data_filter": data_filter,
                "data_src": data_src,
-               "check_list":check_list,
-               "Search_mode":search_mode}
+               "check_list": check_list,
+               "Search_mode": search_mode}
 
     return render(
         request,
