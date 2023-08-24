@@ -11,6 +11,5 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('<int:pk>/', views.community_detail, name='community_detail'),
     path('new/', views.new, name='new'),
-
     path('update/<int:pk>/', views.update, name='update'),
 ]
