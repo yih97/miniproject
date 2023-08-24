@@ -5,135 +5,76 @@
     <meta charset="UTF-8">
     <title>{{ coffee_list.coffee }}</title>
 
-  <h2>{{ coffee_list.coffee }}</h2>
-
-
-<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>-->
-
-<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>-->
-
+    <h2>{{ coffee_list.coffee }}</h2>
 </head>
 <body>
 
-   {% include 'single_page/base.html' %}
+    {% include 'single_page/base.html' %}
 
-<!--  check box -->
-<div class="container">
-  <div class="row g-0">
-    <div class="col-6">
-<!--      <div class="form-check form-check-inline">-->
-<!--        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">-->
-<!--        <label class="form-check-label" for="inlineCheckbox1">가격</label>-->
-<!--      </div>-->
-<!--      <div class="form-check form-check-inline">-->
-<!--        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">-->
-<!--        <label class="form-check-label" for="inlineCheckbox2">카페인</label>-->
-<!--      </div>-->
-<!--      <div class="form-check form-check-inline">-->
-<!--        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option1">-->
-<!--        <label class="form-check-label" for="inlineCheckbox1">당</label>-->
-<!--      </div>-->
-<!--      <div class="form-check form-check-inline">-->
-<!--        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option2">-->
-<!--        <label class="form-check-label" for="inlineCheckbox2">칼로리</label>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!-- 체크 박스 -->
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-6">
 
-<!--        <div class="form-check form-check-inline">-->
-<!--          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">-->
-<!--          <label class="form-check-label" for="flexRadioDefault1">-->
-<!--            가격-->
-<!--          </label>-->
-<!--        </div>-->
-<!--        <div class="form-check form-check-inline">-->
-<!--          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>-->
-<!--          <label class="form-check-label" for="flexRadioDefault2">-->
-<!--            칼로리-->
-<!--          </label>-->
-<!--        </div>-->
-<!--        <div class="form-check form-check-inline">-->
-<!--          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">-->
-<!--          <label class="form-check-label" for="flexRadioDefault1">-->
-<!--            카페인-->
-<!--          </label>-->
-<!--        </div>-->
-<!--        <div class="form-check form-check-inline">-->
-<!--          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>-->
-<!--          <label class="form-check-label" for="flexRadioDefault2">-->
-<!--            당-->
-<!--          </label>-->
-<!--        </div>-->
-
-      <form action="{% url 'coffee_detail' %}" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-
-<!--        <div class="col-7">-->
-            <div class="input-group mb-3">
-             <select class="form-select" aria-label="Default select example" method="post" id="search_mode" name="search_mode">
-                  <option selected> 순위 보기 </option>
-                  <option value="desc"> 높은 순</option>
-                  <option value="asc"> 낮은 순 </option>
-             </select>
-
-                <button type="submit" class="btn btn-primary">검색</button>
-
-            <div class="form-check form-check-inline">
-                <input type="radio" name="check_list" value="price">
-                <label class="form-check-label text-white" style="margin-right: 20px;">가격</label>
-                <input type="radio" name="check_list" value="caffeine">
-                <label class="form-check-label text-white" style="margin-right: 20px;">카페인</label>
-                <input type="radio" name="check_list" value="kcal">
-                <label class="form-check-label text-white" style="margin-right: 20px;">칼로리</label>
-                <input type="radio" name="check_list" value="sugar">
-                <label class="form-check-label text-white" style="margin-right: 20px;">당</label>
+                <form action="{% url 'coffee_detail' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <select class="form-select" aria-label="Default select example" method="post" id="search_mode" name="search_mode">
+                            <option selected>순위 보기</option>
+                            <option value="desc">높은 순</option>
+                            <option value="asc">낮은 순</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">검색</button>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" name="check_list" value="price" class="form-check-input">
+                            <label class="form-check-label text-white" style="margin-right: 20px;">가격</label>
+                            <input type="radio" name="check_list" value="caffeine" class="form-check-input">
+                            <label class="form-check-label text-white" style="margin-right: 20px;">카페인</label>
+                            <input type="radio" name="check_list" value="kcal" class="form-check-input">
+                            <label class="form-check-label text-white" style="margin-right: 20px;">칼로리</label>
+                            <input type="radio" name="check_list" value="sugar" class="form-check-input">
+                            <label class="form-check-label text-white" style="margin-right: 20px;">당</label>
+                        </div>
+                        <div>
+                            <!-- 데이터 필터 및 데이터 소스 값 전달 -->
+                            <input class="visually-hidden" name="data_filter" value="{{ data_filter }}">
+                            <h1 style="color:white">{{ data_src }}</h1>
+                            <input class="visually-hidden" name="data_src" value="{{ data_src }}">
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <div>
-                <!--데이터 받아올 수 있게-->
-                <input class="visually-hidden" name="data_filter" value="{{ data_filter }}">
-                    <h1 style="color:white">{{ data_src }}</h1>
-                <input class="visually-hidden" name="data_src" value="{{ data_src }}">
-            </div>
-<!--             </div>-->
-            </div>
-      </form>
+        </div>
     </div>
 
-
-<!-- 순위 선택 -->
-<!--    <div class="col-2">-->
-<!--      <div class="input-group mb-3">-->
-<!--      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>-->
-<!--      <ul class="dropdown-menu dropdown-menu-end">-->
-<!--        <li><a class="dropdown-item" href="#">낮은 순</a></li>-->
-<!--        <li><a class="dropdown-item" href="#">높은 순</a></li>-->
-<!--      </ul>-->
-<!--      </div>-->
-<!--    </div>-->
-  </div>
+    <!-- 브랜드 -->
+   <div class="container overflow-hidden">
+    {% for c in coffee_list %}
+    <ul class="list-group">
+        <li class="list-group-item text-white bg-transparent">{{ c.brand }} - {{ c.coffee_name }} - {{ c.price }}</li>
+    </ul>
+    {% endfor %}
 </div>
 
 
-<!-- brand -->
+    <!-- 코드네이션 기능 -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            {% if coffee_list.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ coffee_list.previous_page_number }}">이전</a></li>
+            {% endif %}
+            <li class="page-item disabled"><span class="page-link">{{ coffee_list.number }}</span></li>
+            {% if coffee_list.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ coffee_list.next_page_number }}">다음</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 
-{% for c in coffee_list %}
-    {# {% if c.brand == "mega" %} #}
-    <ul>
-<!--        <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMTlfMTM4%2FMDAxNjQyNTc1MDQzNTI0.OJpHMdpFYLas79g9dEqD8XACi1CInL4-WxQaAyI2XnIg.kQ2H4zHS-w8xvAim_utmBmGNT91lEz3RXr8L0k_6Cb8g.PNG.po00206%2F20220119_154946.png&type=sc960_832"-->
-<!--            class="rounded" style="width:80px; height:80px;">-->
-        <p class="float-center text-white">{{ c.brand }}    {{ c.coffee_name }}    {{ c.price }}</p>
-    </ul>
-    {# {% endif %} #}
-{% endfor %}
+    {% include 'single_page/footer.html' %}
 
-
-{% include 'coffee/pagination.html' %}
-{% include 'single_page/footer.html' %}
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <!-- 부트스트랩 스크립트 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
 
 </body>
 </html>
