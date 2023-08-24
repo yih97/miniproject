@@ -13,9 +13,12 @@ def category_page(request):
         data_src = request.GET["cate"]
         # 받아온 데이터를 data_src라는 변수로 받기
         data_filter = "cate"
+        # cate를 무엇으로 받을 건지
 
     elif "br" in request.GET:
         category = Coffee.objects.filter(brand=request.GET["br"])
+        data_src = request.GET["br"]
+        data_filter = "br"
 
 
     else:
@@ -23,6 +26,7 @@ def category_page(request):
         data_src = "all"
         data_filter = "none"
     # 아닌 경우에는 coffee 데이터를 모두 끌어오기
+
 
     return render(
         request,
@@ -42,11 +46,12 @@ class CoffeeList(ListView):
 
 def check_list(request):
     if request.method == "POST":
-        print(request.POST.get("data_filter"))
         if request.POST.get("data_filter") == "cate":
             data = Coffee.objects.filter(coffee=request.POST.get("data_src"))
-        # elif 브랜드 정보 넘겨주게 되면 여기서 조건설정:
-        #     브랜드 필터링 데이터 받아오기
+
+        elif request.POST.get("data_filter") == "br":
+            data = Coffee.objects.filter(brand=request.POST.get("data_src"))
+
         else:
             data = Coffee.objects.all()
 
