@@ -17,6 +17,7 @@
     <div class="container">
         <div class="row g-0">
             <div class="col-6">
+
                 <form action="{% url 'coffee:coffee_detail' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="input-group mb-3">
@@ -30,7 +31,10 @@
                           <label class="form-check-label text-white" for="inlineCheckbox2">카페인</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="check_list"  id="inlineCheckbox3" value="kal">
+
+                          <input class="form-check-input" type="radio" name="check_list"  id="inlineCheckbox3" value="kcal">
+
+
                           <label class="form-check-label text-white" for="inlineCheckbox3">칼로리</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -58,24 +62,42 @@
     </div>
 
     <!-- 브랜드 -->
-   <div class="container overflow-hidden">
-    {% for c in coffee_list %}
-    <ul class="list-group">
-        <li class="list-group-item text-white bg-transparent">{{ c.brand }} - {{ c.coffee_name }} - {{ c.price }}</li>
-    </ul>
-    {% endfor %}
-</div>
+<!--   <div class="container overflow-hidden">-->
+<!--    {% for c in coffee_list %}-->
+<!--    <ul class="list-group">-->
+<!--        <li class="list-group-item text-white bg-transparent">{{ c.brand }} - {{ c.coffee_name }} - {{ c.price }}</li>-->
+<!--    </ul>-->
+<!--    {% endfor %}-->
+<!--    </div>-->
+
+    <div class="container overflow-hidden">
+        <table class="table table-hover table-dark"  border="1">
+        <thead>
+            <th style="color:white;">BRAND</th>
+            <th style="color:white;">NAME</th>
+            <th style="color:white;">PRICE</th>
+        </thead>
+        {% for c in coffee_list %}
+            <tr class="alert" role="alert">
+                <td style="color:white;">{{ c.brand }}</td>
+                <td style="color:white;">{{ c.coffee_name }}</td>
+                <td style="color:white;">{{ c.price }}</td>
+<!--                {{ c.brand }} - {{ c.coffee_name }} - {{ c.price }}-->
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
 
 
     <!-- 코드네이션 기능 -->
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             {% if coffee_list.has_previous %}
-            <li class="page-item"><a class="page-link" href="?page={{ coffee_list.previous_page_number }}">이전</a></li>
+            <li class="page-item"><a class="page-link" href="?{{ data_filter }}={{ data_src }}&page={{ coffee_list.previous_page_number }}">이전</a></li>
             {% endif %}
             <li class="page-item disabled"><span class="page-link">{{ coffee_list.number }}</span></li>
             {% if coffee_list.has_next %}
-            <li class="page-item"><a class="page-link" href="?page={{ coffee_list.next_page_number }}">다음</a></li>
+            <li class="page-item"><a class="page-link" href="?{{ data_filter }}={{ data_src }}&page={{ coffee_list.next_page_number }}">다음</a></li>
             {% endif %}
         </ul>
     </nav>
