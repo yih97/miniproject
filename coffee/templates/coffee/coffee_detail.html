@@ -2,24 +2,41 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>coffee detail</title>
+    <title>커피 상세 정보</title>
 </head>
-<body>
-{% include 'single_page/base.html' %}
-{% for cof in coffee_list %}
-    <p style="color: white;">{{ cof.brand }}</p>
-    <p style="color: white;">{{ cof.coffee_name }}</p>
-    <p style="color: white;">{{ cof.caffeine }}</p>
-    <p style="color: white;">{{ cof.kcal }}</p>
-    <p style="color: white;">{{ cof.price }}</p>
-    <p style="color: white;">{{ cof.sugar }}</p>
-{% endfor %}
 
-    {% include 'coffee/pagination.html' %}
-    {% include 'single_page/footer.html' %}
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
 
-</body>
+    <body>
+        {% include 'single_page/base.html' %} <!-- 기본 베이스 HTML 포함 -->
+        {% for cof in coffee_list %}
+            <p style="color: white;">{{ cof.coffee_name }}</p> <!-- 커피 이름 표시 -->
+            <p style="color: white;">{{ cof.caffeine }}</p> <!-- 카페인 함량 표시 -->
+            <p style="color: white;">{{ cof.kcal }}</p> <!-- 칼로리 표시 -->
+            <p style="color: white;">{{ cof.price }}</p> <!-- 가격 표시 -->
+            <p style="color: white;">{{ cof.sugar }}</p> <!-- 당 함량 표시 -->
+        {% endfor %}
+
+
+        <!-- 페이지네이션 -->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if coffee_list.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">처음</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ coffee_list.previous_page_number }}">이전</a></li>
+                {% endif %}
+                <li class="page-item disabled"><span class="page-link">{{ coffee_list.number }}</span></li>
+                {% if coffee_list.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ coffee_list.next_page_number }}">다음</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ coffee_list.paginator.num_pages }}">마지막</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+        {% include 'single_page/footer.html' %} <!-- 푸터 HTML 포함 -->
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+
+    </body>
 </html>
