@@ -85,6 +85,107 @@
 <!--    </nav>-->
     {% block content %}
     {% endblock %}
+     <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand text-uppercase fw-bold d-lg-none" href=" ">COFFEE FINDER</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href=" ">Home</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.html">About</a></li>
+
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="products.html">Products</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="store.html">Store</a></li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              CATEGORY
+                          </a>
+                          <ul class="dropdown-menu">
+                              {% for cate in category %}
+                                <li><a class="dropdown-item" href="/coffee/?cate={{ cate.coffee }}">{{ cate.coffee }}</a></li>
+                              {% endfor %}
+                          </ul>
+                        </li>
+                    </ul>
+                    <li class="nav-item">
+                        {% if user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'community:logout' %}"></a>
+                        {% endif %}
+                    </li>
+
+                    <button class="btn btn-primary" style="float-end">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</a>
+                    </button>
+                </div>
+            </div>
+        </nav>
+<body>
+<!--<div class="container">-->
+<!--    <button class="btn btn-primary" style="float-end">-->
+
+<!--                    </button>-->
+
+<div class="container">
+    <button class="btn btn-primary" style="float-end">
+                        <a class="nav-link" href="{% url 'community:update' community.pk %}" data-bs-toggle="modal" data-bs-target="#loginModal">수정</a>
+                    </button>
+
+<!--<a role="button" class="btn btn-sm btn-danger"-->
+<!--    id="community-{{ community.pk }}-delete-btn"-->
+<!--    href="#" data-bs-toggle="modal"-->
+<!--    data-bs-target="#deleteCommunityModal-{{ community.pk }}">-->
+<!--    delete-->
+<!--</a>-->
+
+    <a href ="{% url 'community:delete' community.pk %}">
+        <button class="btn btn-primary" style="float-end" type="submit">삭제</button>
+    </a>
+
+<!--Modal-->
+<!--    <div class="modal fade" id="deleteCommunityModal-{{ community.pk }}" role="dialog"-->
+<!--         aria-labelledby="deleteCommunityModalLabel" aria-hidden="true">-->
+<!--        <div class="modal-dialog" role="document">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="deleteModalLabel">-->
+<!--                        Are You Sure?-->
+<!--                    </h5>-->
+<!--                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">-->
+<!--                        <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    <del>{{ community | linebreaks }}</del>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">-->
+<!--                        Cancel-->
+<!--                    </button>-->
+<!--                    <a role = "button" class="btn btn-danger"-->
+<!--                       href="/delete/{{ community.pk }}/">-->
+<!--                       Delete-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    {{ community.title }}
+    <br>
+    {{ community.content }}
+    <br/>
+        </div>
+    </div>
+        <!-- 드롭다운 메뉴 만든다 -->
+                {% for i in categories %}
+<!--                    <li class="드롭다운메뉴">{{ i.coffee }}</li>-->
+                <p>{{ i.coffee }}</p>
+                {% endfor %}
+            </div>
+
+    <footer class="footer text-faded text-center py-5">
+<div class="container"><p class="m-0 small">Copyright &copy; Coffee Finder 2023</p></div>
+</footer>
     <!-- Bootstrap core JS-->
     <script src="{% static 'css/styles.css' %}" rel="stylesheet" ></script>
     <!-- Core theme JS-->
