@@ -105,9 +105,17 @@
 
     <div class="container">
         <h2>게시글</h2>
+             <a href ="{% url 'community:new' %}">
+        <button class="btn btn-primary" style="float-end" type="submit">Create</button>
+    </a>
         {% for c in community %}
-        <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+        <div class="card" style="width: 18rem;" id="post-{{ c.pk }}">
+<!--        <img src="..." class="card-img-top" alt="...">-->
+            {% if c.imgfile %}
+                <a href="#!"><img class="card-img-top" src="{{ c.imgfile.url }}" alt = "{{ c.imgfile }} head image" /></a>
+            {% else %}
+                <a href="#!"><img class="card-img-top" src="https://picsum.photos/seed/{{ c.pk }}/800/500" alt ="random_image" /></a>
+            {% endif %}
         <div class="card-body">
             <p class="card-text">
             <h4>{{ c.title }}</h4>

@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
+from distutils.command.upload import upload
 
 class Community(models.Model):
     title = models.CharField(max_length=30)
@@ -8,8 +9,9 @@ class Community(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     modify_date = models.DateTimeField(null=True, blank=True)
-    
-
+    imgfile = models.ImageField(null=True, upload_to="community/images/%y/%m/%d", blank=True)
+    # image = models.ImageField(upload_to="media/images/%Y/%m/%d", blank=True)
+    # file = models.FileField(upload_to="media/files/%Y/%m/%d", blank=True)
     def __str__(self):
         return self.title
 

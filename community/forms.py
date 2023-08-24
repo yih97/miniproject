@@ -15,4 +15,4 @@ class UserForm(UserCreationForm):
 class CommunityForm(forms.ModelForm):
     class Meta:
         model = Community
-        fields = ['title', 'content']
+        fields = ['title', 'content', 'imgfile']

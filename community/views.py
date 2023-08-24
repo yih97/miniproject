@@ -90,3 +90,5 @@ def delete(request, pk):  # 매개변수 설정
     community.delete()
     return redirect("/community/")
 
+
+
