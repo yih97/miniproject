@@ -10,6 +10,8 @@
 <body>
 
     {% include 'single_page/base.html' %}
+    <h3 style="color:white" text="center" >{{ data_src }}</h3>
+
 
     <!-- 체크 박스 -->
     <div class="container">
@@ -19,27 +21,35 @@
                 <form action="{% url 'coffee_detail' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="input-group mb-3">
-                        <select class="form-select" aria-label="Default select example" method="post" id="search_mode" name="search_mode">
+
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="check_list"  id="inlineCheckbox1" value="price">
+                          <label class="form-check-label text-white" for="inlineCheckbox1">가격</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="check_list"  id="inlineCheckbox2" caffeine="option2">
+                          <label class="form-check-label text-white" for="inlineCheckbox2">카페인</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="check_list"  id="inlineCheckbox3" kcal="option3">
+                          <label class="form-check-label text-white" for="inlineCheckbox3">칼로리</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="check_list"  id="inlineCheckbox4" sugar="option3">
+                          <label class="form-check-label text-white" for="inlineCheckbox4">당</label>
+                        </div>
+
+                         <select class="form-select" aria-label="Default select example" method="post" id="search_mode" name="search_mode">
                             <option selected>순위 보기</option>
                             <option value="desc">높은 순</option>
                             <option value="asc">낮은 순</option>
                         </select>
-                        <button type="submit" class="btn btn-primary">검색</button>
-                        <div class="form-check form-check-inline">
-                            <input type="radio" name="check_list" value="price" class="form-check-input">
-                            <label class="form-check-label text-white" style="margin-right: 20px;">가격</label>
-                            <input type="radio" name="check_list" value="caffeine" class="form-check-input">
-                            <label class="form-check-label text-white" style="margin-right: 20px;">카페인</label>
-                            <input type="radio" name="check_list" value="kcal" class="form-check-input">
-                            <label class="form-check-label text-white" style="margin-right: 20px;">칼로리</label>
-                            <input type="radio" name="check_list" value="sugar" class="form-check-input">
-                            <label class="form-check-label text-white" style="margin-right: 20px;">당</label>
-                        </div>
+                           <button type="submit" class="btn btn-primary">검색</button>
                         <div>
-                            
+
                             <!-- 데이터 필터 및 데이터 소스 값 전달 -->
                             <input class="visually-hidden" name="data_filter" value="{{ data_filter }}">
-<!--                            <h1 style="color:white">{{ data_src }}</h1>-->
+
                             <input class="visually-hidden" name="data_src" value="{{ data_src }}">
                         </div>
                     </div>
