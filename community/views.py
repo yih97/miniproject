@@ -16,10 +16,6 @@ def community_detail(request, pk):
     community = get_object_or_404(Community, pk=pk)
     return render(request, "community/community_detail.html", {"community" : community})
 
-
-
-# Create your views here.
-
 def community(request):
     community = Community.objects.all()
     return render(request,"community/community.html", {"community" : community})
@@ -93,3 +89,9 @@ def modify(request, community_id):
              form = CommunityForm(instance=community)
          context = {'community':community, 'form': form}
          return render(request, 'community/community_form.html', context)
+
+
+def delete(request, pk):  # 매개변수 설정
+    community = get_object_or_404(Community, pk=pk)
+    community.delete()
+    return redirect("/community/")

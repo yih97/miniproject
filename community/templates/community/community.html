@@ -127,10 +127,10 @@
   <img src="..." class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-text">
-       <h4>{{ c.title }}</h4>
+    <h4>{{ c.title }}</h4>
     <br/>
     <p>{{ c.content }}</p>
-    <a href="{% url 'community:update' c.pk %}" class="btn btn-outline-primary">edit</a>
+    <a href="{% url 'community:community_detail' c.pk %}" class="btn btn-outline-primary">보기</a>
     </p>
   </div>
 </div>
