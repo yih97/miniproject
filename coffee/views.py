@@ -16,6 +16,12 @@ def category_page(request):
         data_filter = "cate"
         # cate를 무엇으로 받을 건지
 
+    # if request.method == "POST":
+    #     category = Coffee.objects.filter(coffee=request.GET["cate"])
+    #     data_filter = request.POST.get("data_filter")
+    #     data_src = request.POST.get("data_src")
+    #     page_number = 1
+
     # "br" 파라미터가 있는지 확인
     elif "br" in request.GET:
         # 브랜드에 따른 커피 필터링
@@ -23,11 +29,27 @@ def category_page(request):
         data_src = request.GET["br"]
         data_filter = "br"
 
+    # else:
+    #     category = Coffee.objects.filter(coffee=request.GET["cate"])
+    #     data_filter = request.POST.get("data_filter")
+    #     data_src = request.POST.get("data_src")
+    #     page_number = request.GET.get("page")
+    #
+    # data = Coffee.objects.all()
+    # data_src = "all"
+    # data_filter = "none"
+
     else:
         # 모든 커피 데이터 가져오기
         category = Coffee.objects.all()
         data_src = "all"
         data_filter = "none"
+
+    # if data_filter == "cate":
+    #     data = Coffee.objects.filter(coffee=data_src)
+    #
+    # elif data_filter == "br":
+    #     data = Coffee.objects.filter(brand=data_src)
 
     # 페이지네이션을 위한 변수 초기화
     page_number = request.GET.get('page')
@@ -37,6 +59,10 @@ def category_page(request):
     paginator = Paginator(category, page_size)
     page_obj = paginator.get_page(page_number)
 
+    # context = {"coffee_list": page_obj,
+    #            "data_filter": data_filter,
+    #            "data_src": data_src,
+    #           }
 
     return render(
         request,
@@ -91,9 +117,9 @@ def check_list(request):
     context = {"coffee_list": page_obj,
                "data_filter": data_filter,
                "data_src": data_src,
-               "check_list":check_list,
-               "Search_mode":search_mode}
+               "check_list": check_list,
+               "search_mode": search_mode}
 
     return render(
         request,
-        "coffee/coffee_detail.html",context)
+        "coffee/coffee_detail.html", context)

@@ -9,27 +9,49 @@
 
     <body>
         {% include 'single_page/base.html' %} <!-- 기본 베이스 HTML 포함 -->
-        {% for cof in coffee_list %}
-            <p style="color: white;">{{ cof.brand }}</p> <!-- 브랜드 표시 -->
-            <p style="color: white;">{{ cof.coffee_name }}</p> <!-- 커피 이름 표시 -->
-            <p style="color: white;">{{ cof.caffeine }}</p> <!-- 카페인 함량 표시 -->
-            <p style="color: white;">{{ cof.kcal }}</p> <!-- 칼로리 표시 -->
-            <p style="color: white;">{{ cof.price }}</p> <!-- 가격 표시 -->
-            <p style="color: white;">{{ cof.sugar }}</p> <!-- 당 함량 표시 -->
+<!--        {% for cof in coffee_list %}-->
+<!--            <p style="color: white;">{{ cof.brand }}</p> &lt;!&ndash; 브랜드 표시 &ndash;&gt;-->
+<!--            <p style="color: white;">{{ cof.coffee_name }}</p> &lt;!&ndash; 커피 이름 표시 &ndash;&gt;-->
+<!--            <p style="color: white;">{{ cof.caffeine }}</p> &lt;!&ndash; 카페인 함량 표시 &ndash;&gt;-->
+<!--            <p style="color: white;">{{ cof.kcal }}</p> &lt;!&ndash; 칼로리 표시 &ndash;&gt;-->
+<!--            <p style="color: white;">{{ cof.price }}</p> &lt;!&ndash; 가격 표시 &ndash;&gt;-->
+<!--            <p style="color: white;">{{ cof.sugar }}</p> &lt;!&ndash; 당 함량 표시 &ndash;&gt;-->
+<!--        {% endfor %}-->
+
+        <table class="table table-hover table-dark"  border="1">
+        <thead>
+            <th style="color:white;">BRAND</th>
+            <th style="color:white;">NAME</th>
+            <th style="color:white;">PRICE</th>
+            <th style="color:white;">CAFFEINE</th>
+            <th style="color:white;">KCAL</th>
+            <th style="color:white;">SUGAR</th>
+        </thead>
+        {% for c in coffee_list %}
+            <tr class="alert" role="alert">
+                <td style="color:white;">{{ c.brand }}</td>
+                <td style="color:white;">{{ c.coffee_name }}</td>
+                <td style="color:white;">{{ c.price }}</td>
+                <td style="color:white;">{{ c.caffeine }}</td>
+                <td style="color:white;">{{ c.kcal }}</td>
+                <td style="color:white;">{{ c.sugar }}</td>
+<!--                {{ c.brand }} - {{ c.coffee_name }} - {{ c.price }}-->
+            </tr>
         {% endfor %}
+        </table>
 
 
         <!-- 페이지네이션 -->
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 {% if coffee_list.has_previous %}
-                <li class="page-item"><a class="page-link" href="?page=1&data_filter={{data_filter}}&data_src={{data_src}}&check_list={{ckeck_list}}&search_mode={{search_mode}}">처음</a></li>
-                <li class="page-item"><a class="page-link" href="?page={{ coffee_list.previous_page_number }}&data_filter={{data_filter}}&data_src={{data_src}}&check_list={{ckeck_list}}&search_mode={{search_mode}}">이전</a></li>
+                <li class="page-item"><a class="page-link" href="?page=1&data_filter={{data_filter}}&data_src={{data_src}}&check_list={{check_list}}&search_mode={{search_mode}}">처음</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ coffee_list.previous_page_number }}&data_filter={{data_filter}}&data_src={{data_src}}&check_list={{check_list}}&search_mode={{search_mode}}">이전</a></li>
                 {% endif %}
                 <li class="page-item disabled"><span class="page-link">{{ coffee_list.number }}</span></li>
                 {% if coffee_list.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ coffee_list.next_page_number }}&data_filter={{data_filter}}&data_src={{data_src}}&check_list={{ckeck_list}}&search_mode={{search_mode}}">다음</a></li>
-                <li class="page-item"><a class="page-link" href="?page={{ coffee_list.paginator.num_pages }}&data_filter={{data_filter}}&data_src={{data_src}}&check_list={{ckeck_list}}&search_mode={{search_mode}}">마지막</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ coffee_list.next_page_number }}&data_filter={{data_filter}}&data_src={{data_src}}&check_list={{check_list}}&search_mode={{search_mode}}">다음</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ coffee_list.paginator.num_pages }}&data_filter={{data_filter}}&data_src={{data_src}}&check_list={{check_list}}&search_mode={{search_mode}}">마지막</a></li>
                 {% endif %}
             </ul>
         </nav>
