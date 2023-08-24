@@ -50,6 +50,7 @@ def category_page(request):
 
 class CoffeeList(ListView):
     model = Coffee
+    
 
 # class CoffeeDetail(DetailView):
 #     model = Coffee
