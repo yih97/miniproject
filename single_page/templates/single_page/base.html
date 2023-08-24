@@ -41,17 +41,13 @@
                       <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 d-grid gap-2">
-                                <a role="button" class="btn btn-outline-dark" href="#">
-                                    <i class="fa-brands fa-google" style="color: #3fbc2f;"></i>
-                                    Log in with Google
-                                </a>
                                 <a role="button" class="btn btn-outline-dark" href="{% url 'community:login' %}">
                                     <i class="fa-solid fa-envelope" style="color: #a51ac1;"></i>
                                     Log in with E-mail
                                 </a>
                             </div>
                             <div class="col-md-6">
-                                <a role="button" class="btn btn-outline-dark" href="/accounts/signup/">
+                                <a role="button" class="btn btn-outline-dark" href="{% url 'community:signup' %}">
                                     <i class="fa-solid fa-clipboard-check" style="color: #b01fe5;"></i>
                                     Sign up with E-mail
                                 </a>
