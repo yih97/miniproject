@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-3">
+    <table class="table">
+
+    </table>
+    <a href="{% url 'community:community_create' %}" class="btn btn-primary">
+        질문 등록하기
+    </a>
+
+    {% if community_list %}
+        <ul>
+            {% for community in community_list %}
+                <li><a href="/community/{{ community.id }}/">{{ community.title }}</a></li> <!-- 상세보기 페이지로 이동 -->
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>아직 글이 없습니다.</p>
+    {% endif%}
+
+</div>
+{% endblock %}
