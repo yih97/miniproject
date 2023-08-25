@@ -58,26 +58,6 @@ def signup(request):
     return render(request, 'community/signup.html', {'form' : form})
 
 
-@login_required(login_url='community:login')
-def modify(request, community_id):
-    post = get_object_or_404(Community, pk=community_id)
-    if request.user != post.author:
-        messages.error(request, '수정권한이 없습니다.')
-        return redirect('/')
-    if request.method == "POST":
-         form = CommunityForm(request.POST, instance=community)
-         if form.is_valid():
-             community = form.save(commit=False)
-             community.author = request.user
-             community.modify_date=timezone.now()
-             community.save()
-             return redirect("/")
-         else:
-             form = CommunityForm(instance=community)
-         context = {'community':community, 'form': form}
-         return render(request, 'community/community_form.html', context)
-
-
 def delete(request, pk):  # 매개변수 설정
     community = get_object_or_404(Community, pk=pk)
     community.delete()

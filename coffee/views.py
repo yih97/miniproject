@@ -12,12 +12,6 @@ def category_page(request):
         data_filter = "cate"
         # cate를 무엇으로 받을 건지
 
-    # if request.method == "POST":
-    #     category = Coffee.objects.filter(coffee=request.GET["cate"])
-    #     data_filter = request.POST.get("data_filter")
-    #     data_src = request.POST.get("data_src")
-    #     page_number = 1
-
     # "br" 파라미터가 있는지 확인
     elif "br" in request.GET:
         # 브랜드에 따른 커피 필터링
@@ -32,12 +26,6 @@ def category_page(request):
         data_src = "all"
         data_filter = "none"
 
-    # if data_filter == "cate":
-    #     data = Coffee.objects.filter(coffee=data_src)
-    #
-    # elif data_filter == "br":
-    #     data = Coffee.objects.filter(brand=data_src)
-
     # 페이지네이션을 위한 변수 초기화
     page_number = request.GET.get('page')
     page_size = 10
@@ -46,10 +34,6 @@ def category_page(request):
     paginator = Paginator(category, page_size)
     page_obj = paginator.get_page(page_number)
 
-    # context = {"coffee_list": page_obj,
-    #            "data_filter": data_filter,
-    #            "data_src": data_src,
-    #           }
 
     return render(
         request,
@@ -64,8 +48,6 @@ def category_page(request):
 class CoffeeList(ListView):
     model = Coffee
 
-# class CoffeeDetail(DetailView):
-#     model = Coffee
 
 def check_list(request):
     if request.method == "POST":
